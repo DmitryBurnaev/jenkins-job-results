@@ -11,6 +11,5 @@
 # ignore static folder
 app/static/* linguist-vendored
 
-# ignore templates folder
-app/templates/* linguist-vendored
+# ignore resourses folder
 resources/* linguist-vendored
