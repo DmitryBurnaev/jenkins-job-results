@@ -1,0 +1,11 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+.main-container{
+    padding-top: 30px;
+}
+.row-results{
+    margin-top: 20px
+}

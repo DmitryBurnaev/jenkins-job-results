@@ -1,0 +1,15 @@
+# copy this file into ~/.config/systemd/user/
+
+[Unit]
+Description=JenkinsJobResults
+After=syslog.target
+After=network.target
+After=nginx.service
+
+[Service]
+PIDFile=/tmp/jenkins_job_results.pid
+WorkingDirectory=<path_to_your_project>
+ExecStart=<path_to_your_project>/venv/bin/python <path_to_your_project>/run.py
+
+[Install]
+WantedBy=default.target

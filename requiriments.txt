@@ -1,0 +1,9 @@
+flask<0.14
+flask-sqlalchemy<2.3
+flask-migrate<2.2
+flask-script<2.1
+flask-testing<0.7
+lxml<3.7
+cssselect<1.0
+WTForms<2.2
+requests<2.19
