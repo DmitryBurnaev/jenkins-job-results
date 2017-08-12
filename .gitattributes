@@ -13,4 +13,4 @@ app/static/* linguist-vendored
 
 # ignore templates folder
 app/templates/* linguist-vendored
-resources/*
+resources/* linguist-vendored
