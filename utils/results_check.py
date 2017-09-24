@@ -61,7 +61,7 @@ class ResultsChecker(object):
 
     @staticmethod
     def get_results_from_files():
-        with open(os.path.join(RESOURCES_DIR, 'test_staging_stat.html')) as f:
+        with open(os.path.join(RESOURCES_DIR, 'test_staging_new_stat.html')) as f:
             staging_results = f.read()
 
         with open(os.path.join(RESOURCES_DIR, 'test_job_fails.html')) as f:
@@ -95,19 +95,21 @@ class ResultsChecker(object):
             # print('Error detected: {}'.format(self.error))
             return
 
-        for test_line in staging_results.split('\n'):
-            research_name = re.search(TEST_NAME_REG_EXP, test_line)
-            if research_name is None:
+        html_doc = fromstring(staging_results)
+        for test_tr in html_doc.cssselect('.table tbody tr'):
+            try:
+                test_name = \
+                    test_tr.cssselect('td')[0].cssselect('div > a')[0].text
+                test_res = \
+                    test_tr.cssselect('td')[2].text
+            except IndexError:
                 continue
 
-            research_results = re.findall(TEST_RESULT_EXP, test_line)
-            if len(research_results) < 2:
-                continue
-
-            test_name = research_name.groupdict()['name']
-            staging_result_tests.update({
-                test_name: research_results[-1]
-            })
+            stat_result = re.findall('([0-9]+)\.*\d*', test_res)
+            staging_result_tests[test_name] = {
+                'fails': int(stat_result[0]),
+                'total': int(stat_result[1])
+            }
 
         html_doc = fromstring(job_results)
         tests_tables = html_doc.cssselect('table.pane')
@@ -123,14 +125,29 @@ class ResultsChecker(object):
 
         for failed_test_item in tests_table.cssselect(TEST_SELECTOR_LINK):
             test_name = failed_test_item.text
-            result_tests = staging_result_tests.get(test_name, '')
-            if '0:' in result_tests and result_tests.index('0:') == 0:
-                warning_level = WARNING_LEVEL_LOW
-            elif ':0' in result_tests \
-                    and result_tests.index(':0') == len(result_tests) - 2:
-                warning_level = WARNING_LEVEL_CRITICAL
-            else:
+            result_tests = staging_result_tests.get(test_name, {})
+            try:
+                fails_count = result_tests['fails']
+            except KeyError:
                 warning_level = WARNING_LEVEL_NORMAL
+            else:
+                warning_level = WARNING_LEVEL_CRITICAL \
+                    if fails_count > 0 else WARNING_LEVEL_LOW
+
+            # if result_tests.get('fails') == 0:
+            #     warning_level = WARNING_LEVEL_LOW
+            # elif result_tests.get('fails') > 0:
+            #     warning_level = WARNING_LEVEL_CRITICAL
+            # else:
+            #     warning_level = WARNING_LEVEL_NORMAL
+
+            # if '0:' in result_tests and result_tests.index('0:') == 0:
+            #     warning_level = WARNING_LEVEL_LOW
+            # elif ':0' in result_tests \
+            #         and result_tests.index(':0') == len(result_tests) - 2:
+            #     warning_level = WARNING_LEVEL_CRITICAL
+            # else:
+            #     warning_level = WARNING_LEVEL_NORMAL
 
             self.failed_tests.append({
                 'name': test_name,

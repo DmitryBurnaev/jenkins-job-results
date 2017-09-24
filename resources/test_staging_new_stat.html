@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+        src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="/static/js/Chart.min.js" type="text/javascript"></script>
+<script src="/static/js/base.js" type="text/javascript"></script>
+
+<div class="container">
+    <ul class="nav nav-tabs" data-tabs="tabs">
+        <li>
+            <a href="/jobs#1b">Jenkins jobs</a>
+        </li>
+        <li>
+            <a href="/compare_tests#2b">Compare tests</a>
+        </li>
+        <li class="active">
+            <a href="/tests">Tests statistic</a>
+        </li>
+        <li>
+            <a href="/graphs">Graphs</a>
+        </li>
+        <li>
+            <a href="/config">Config</a>
+        </li>
+    </ul>
+</div> <!-- end <div class="container"> -->
+
+
+
+
+<div class="container-fluid">
+    <div class="tab-content clearfix">
+        <div class="tab-pane active" id="3b">
+            <table class="table table-striped">
+                <form action="/tests" method="post" role="form">
+                    <div class="input-group">
+                        <span class="input-group-addon">GROUP:</span>
+                        <select name='main_job' data-size="1"
+                                class="selectpicker show-menu-arrow form-control"
+                                data-max-options="1" data-live-search="true">
+                            <option data-hidden="true"></option>
+
+                            <option value="STAGING">STAGING</option>
+
+                            <option value="78STAGING">78STAGING</option>
+
+                        </select>
+                        <span class="input-group-addon">Job:</span>
+                        <select name='job_name' data-size="1"
+                                class="selectpicker show-menu-arrow form-control"
+                                data-max-options="1" data-live-search="true">
+                            <option data-hidden="true"></option>
+
+
+                            <option value="81BoomBetStaging">81BoomBetStaging
+                            </option>
+
+                            <option value="81GSStaging">81GSStaging</option>
+
+                            <option value="81BoomBetMobileStaging">
+                                81BoomBetMobileStaging
+                            </option>
+
+                            <option value="81CW2MobileStaging">
+                                81CW2MobileStaging
+                            </option>
+
+                            <option value="81CW2Staging">81CW2Staging</option>
+
+
+                            <option value="50GSTests">50GSTests</option>
+
+                            <option value="78GSSTaging">78GSSTaging</option>
+
+
+                        </select>
+                        <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Get tests</button>
+          </span>
+                    </div> <!-- end <div class="input-group">-->
+                </form>
+
+                <thead>
+
+                <tr>
+
+                    <td class="text-nowrap text-center small">Revision</td>
+
+                    <td class="text-nowrap text-center small">--</td>
+
+                    <td class="text-nowrap text-center small">--</td>
+
+                    <td class="text-nowrap text-center small"><a href="#"
+                                                                 data-toggle="tooltip"
+                                                                 title="5b2ab664370fd8c4814c44ae34127ba4cff6b1ff">5b2ab66</a>
+                    </td>
+
+                    <td class="text-nowrap text-center small"><a href="#"
+                                                                 data-toggle="tooltip"
+                                                                 title="9a298dd126c221ecc369db13e3b53526ccde085e">9a298dd</a>
+                    </td>
+
+                    <td class="text-nowrap text-center small"><a href="#"
+                                                                 data-toggle="tooltip"
+                                                                 title="9a298dd126c221ecc369db13e3b53526ccde085e">9a298dd</a>
+                    </td>
+
+                    <td class="text-nowrap text-center small"><a href="#"
+                                                                 data-toggle="tooltip"
+                                                                 title="1b452299bf3447b24fdb4ca63943f85c85280823">1b45229</a>
+                    </td>
+
+                    <td class="text-nowrap text-center small"><a href="#"
+                                                                 data-toggle="tooltip"
+                                                                 title="a0056fa679a0dbbc08e3816a83bc235f90948938">a0056fa</a>
+                    </td>
+
+                    <td class="text-nowrap text-center small"><a href="#"
+                                                                 data-toggle="tooltip"
+                                                                 title="a0056fa679a0dbbc08e3816a83bc235f90948938">a0056fa</a>
+                    </td>
+
+                    <td class="text-nowrap text-center small"><a href="#"
+                                                                 data-toggle="tooltip"
+                                                                 title="6bf2da722918cd8ae73f434263d3f5b7f1d28622">6bf2da7</a>
+                    </td>
+
+                    <td class="text-nowrap text-center small"><a href="#"
+                                                                 data-toggle="tooltip"
+                                                                 title="202ea35dc81bf12351eec78eb788b04ce6dc0ff4">202ea35</a>
+                    </td>
+
+                    <td class="text-nowrap text-center small"><a href="#"
+                                                                 data-toggle="tooltip"
+                                                                 title="44deafadfd61306012bdb870d7c9d9e4ce443ec6">44deafa</a>
+                    </td>
+
+                    <td class="text-nowrap text-center small"><a href="#"
+                                                                 data-toggle="tooltip"
+                                                                 title="44deafadfd61306012bdb870d7c9d9e4ce443ec6">44deafa</a>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="text-nowrap text-center small">Branch</td>
+
+                    <td class="text-nowrap text-center small">--</td>
+
+                    <td class="text-nowrap text-center small">--</td>
+
+                    <td class="text-nowrap text-center small">staging</td>
+
+                    <td class="text-nowrap text-center small">staging</td>
+
+                    <td class="text-nowrap text-center small">staging</td>
+
+                    <td class="text-nowrap text-center small">staging</td>
+
+                    <td class="text-nowrap text-center small">staging</td>
+
+                    <td class="text-nowrap text-center small">staging</td>
+
+                    <td class="text-nowrap text-center small">staging</td>
+
+                    <td class="text-nowrap text-center small">staging</td>
+
+                    <td class="text-nowrap text-center small">staging</td>
+
+                    <td class="text-nowrap text-center small">staging</td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="text-nowrap text-center small">Start date</td>
+
+                    <td class="text-nowrap text-center small">--</td>
+
+                    <td class="text-nowrap text-center small">--</td>
+
+                    <td class="text-nowrap text-center small">2017-09-19<br>05:10:07
+                    </td>
+
+                    <td class="text-nowrap text-center small">2017-09-18<br>00:32:00
+                    </td>
+
+                    <td class="text-nowrap text-center small">2017-09-17<br>11:24:15
+                    </td>
+
+                    <td class="text-nowrap text-center small">2017-09-17<br>10:22:16
+                    </td>
+
+                    <td class="text-nowrap text-center small">2017-09-17<br>00:32:09
+                    </td>
+
+                    <td class="text-nowrap text-center small">2017-09-16<br>00:31:53
+                    </td>
+
+                    <td class="text-nowrap text-center small">2017-09-15<br>00:31:48
+                    </td>
+
+                    <td class="text-nowrap text-center small">2017-09-14<br>00:31:50
+                    </td>
+
+                    <td class="text-nowrap text-center small">2017-09-13<br>00:32:16
+                    </td>
+
+                    <td class="text-nowrap text-center small">2017-09-12<br>00:32:05
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="text-nowrap text-center small">Failed/Passed
+                    </td>
+
+                    <td class="text-nowrap text-center small">--</td>
+
+                    <td class="text-nowrap text-center small">--</td>
+
+                    <td class="text-nowrap text-center small">5/1285</td>
+
+                    <td class="text-nowrap text-center small">25/1263</td>
+
+                    <td class="text-nowrap text-center small">320/112</td>
+
+                    <td class="text-nowrap text-center small">2/700</td>
+
+                    <td class="text-nowrap text-center small">4/1284</td>
+
+                    <td class="text-nowrap text-center small">10/1278</td>
+
+                    <td class="text-nowrap text-center small">9/1277</td>
+
+                    <td class="text-nowrap text-center small">4/1282</td>
+
+                    <td class="text-nowrap text-center small">19/1267</td>
+
+                    <td class="text-nowrap text-center small">23/1263</td>
+
+                </tr>
+
+                </thead>
+                <tbody>
+
+                <tr class="text-nowrap danger small">
+                    <!-- <td class="text-nowrap">src.tests.test_i18n.TestI18nOnGS.test_messages_untouched</td> -->
+                    <td style="padding: 2px;">
+                        <div style="text-overflow: ellipsis; overflow: hidden; max-width: 400px;">
+                            <a href="/test/my_module.test_name_1">src.my_module.test_name_1</a>
+                        </div>
+                    </td>
+                    <td style="padding: 2px;" class="text-nowrap text-center small"> 0 </td>
+                    <td style="padding: 2px;" class="text-nowrap text-center small">failed - 2/ total - 10.0</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">FAILED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">FAILED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                </tr>
+                <tr class="text-nowrap danger small">
+                    <!-- <td class="text-nowrap">src.tests.test_i18n.TestI18nOnGS.test_messages_untouched</td> -->
+                    <td style="padding: 2px;">
+                        <div style="text-overflow: ellipsis; overflow: hidden; max-width: 400px;">
+                            <a href="/test/my_module.test_name_1">src.my_module.test_ops</a>
+                        </div>
+                    </td>
+                    <td style="padding: 2px;" class="text-nowrap text-center small"> 0 </td>
+                    <td style="padding: 2px;" class="text-nowrap text-center small">failed - 0/ total - 10.0</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                    <td style="padding: 2px;" class="text-nowrap warning text-center small">PASSED</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
