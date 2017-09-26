@@ -95,6 +95,11 @@ class ResultsChecker(object):
             # print('Error detected: {}'.format(self.error))
             return
 
+        # hot fix: crop duplicate of HTML tag definition
+        if staging_results.count('<html>') > 1:
+            dup_length = staging_results.index('</html>') + len('</html>')
+            staging_results = staging_results[dup_length:]
+
         html_doc = fromstring(staging_results)
         for test_tr in html_doc.cssselect('.table tbody tr'):
             try:
@@ -132,22 +137,7 @@ class ResultsChecker(object):
                 warning_level = WARNING_LEVEL_NORMAL
             else:
                 warning_level = WARNING_LEVEL_CRITICAL \
-                    if fails_count > 0 else WARNING_LEVEL_LOW
-
-            # if result_tests.get('fails') == 0:
-            #     warning_level = WARNING_LEVEL_LOW
-            # elif result_tests.get('fails') > 0:
-            #     warning_level = WARNING_LEVEL_CRITICAL
-            # else:
-            #     warning_level = WARNING_LEVEL_NORMAL
-
-            # if '0:' in result_tests and result_tests.index('0:') == 0:
-            #     warning_level = WARNING_LEVEL_LOW
-            # elif ':0' in result_tests \
-            #         and result_tests.index(':0') == len(result_tests) - 2:
-            #     warning_level = WARNING_LEVEL_CRITICAL
-            # else:
-            #     warning_level = WARNING_LEVEL_NORMAL
+                    if fails_count == 0 else WARNING_LEVEL_LOW
 
             self.failed_tests.append({
                 'name': test_name,

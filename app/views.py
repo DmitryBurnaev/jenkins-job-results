@@ -3,8 +3,8 @@ from flask import request, redirect, Blueprint, url_for, flash
 from flask import render_template
 from sqlalchemy import desc
 
-from config import JENKINS_URL
-from app import db, app as my_app
+from config import JENKINS_URL, STAGING_STAT_RESULTS_URL
+from app import db
 from app.forms import JenkinsJobForm
 from app.models import JenkinsJob
 
@@ -31,7 +31,8 @@ def index():
     context = {
         'job_items': [job_item.to_dict() for job_item in job_items],
         'form': JenkinsJobForm(),
-        'JENKINS_URL': JENKINS_URL
+        'JENKINS_URL': JENKINS_URL,
+        'STAGING_STAT_RESULTS_URL': STAGING_STAT_RESULTS_URL,
     }
     read_messages()
     return render_template('index.html', **context)

@@ -65,8 +65,12 @@
                                                     {% for failed_test in job_item.failed_tests %}
                                                         <tr class="{{ failed_test.warning_level }}">
                                                             <td>{{ failed_test.name }}</td>
-                                                            <td><a href="{{ JENKINS_URL }}/job/{{ job_item.name }}/lastBuild/testReport/junit/{{ failed_test.href }}" target="_blank">jenkins</a></td>
-                                                            <td>{{ failed_test.staging_result }}</td>
+                                                            <td><a href="{{ JENKINS_URL }}/job/{{ job_item.name }}/lastBuild/testReport/junit/{{ failed_test.href }}" target="_blank">Jenkins Details</a></td>
+                                                            <td>
+                                                                <a target="_blank" href="{{ STAGING_STAT_RESULTS_URL }}">Jenkins Stat:</a>&nbsp;
+                                                                <i> Total <span class="badge">{{ failed_test.staging_result.total }}</span> </i> &nbsp;
+                                                                <i> Fails <span class="badge">{{ failed_test.staging_result.fails }}</span> </i>
+                                                            </td>
                                                         </tr>
                                                     {% endfor %}
                                                 </tbody>

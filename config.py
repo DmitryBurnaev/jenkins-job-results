@@ -15,9 +15,7 @@ FLASK_SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 JENKINS_AUTH = ('***', '***')
 JENKINS_URL = 'http://jenkins2.ezd.lan'
-STAGING_STAT_RESULTS_URL = \
-    'http://jnode0.ezd.lan/jobs_statistic/81GSStaging.html'
-
+STAGING_STAT_RESULTS_URL = 'http://sandstorm11.ezd.lan:5566/tests/81GSStaging'
 JOB_RESULTS_URL = JENKINS_URL + '/job/{job_name}/lastBuild/testReport/'
 
 RESOURCES_DIR = path_join(BASE_DIR, 'resources')
