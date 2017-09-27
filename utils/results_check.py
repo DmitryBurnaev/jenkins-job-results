@@ -134,10 +134,10 @@ class ResultsChecker(object):
             try:
                 fails_count = result_tests['fails']
             except KeyError:
-                warning_level = WARNING_LEVEL_NORMAL
+                warning_level = WARNING_LEVEL_LOW
             else:
                 warning_level = WARNING_LEVEL_CRITICAL \
-                    if fails_count == 0 else WARNING_LEVEL_LOW
+                    if fails_count == 0 else WARNING_LEVEL_NORMAL
 
             self.failed_tests.append({
                 'name': test_name,
