@@ -23,6 +23,9 @@ WARNING_LEVELS = (WARNING_LEVEL_LOW,
                   WARNING_LEVEL_NORMAL,
                   WARNING_LEVEL_CRITICAL)
 
+# This is using global variable only as "cache"
+staging_aggregation_cache = None
+
 
 class ResultsChecker(object):
 
@@ -45,10 +48,7 @@ class ResultsChecker(object):
         auth = requests.auth.HTTPBasicAuth(*JENKINS_AUTH)
 
         try:
-            staging_results = requests.get(
-                STAGING_STAT_RESULTS_URL, auth=auth
-            ).text
-
+            staging_results = self._get_staging_results(auth)
             test_result = requests.get(
                 JOB_RESULTS_URL.format(job_name=self.job_name), auth=auth
             ).text
@@ -58,6 +58,17 @@ class ResultsChecker(object):
             res['results'] = staging_results, test_result
 
         return res
+
+    @staticmethod
+    def _get_staging_results(auth):
+        global staging_aggregation_cache
+        if staging_aggregation_cache:
+            return staging_aggregation_cache
+        staging_results = requests.get(
+            STAGING_STAT_RESULTS_URL, auth=auth
+        ).text
+        staging_aggregation_cache = staging_results
+        return staging_results
 
     @staticmethod
     def get_results_from_files():
